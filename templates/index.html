@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>My Calendar</h1>
+    <p>Subscribe to your calendar:</p>
+    <p>
+      <a href="{{ url_for('calendar.ical_feed', user_id=1) }}">Subscribe to iCal Feed</a>
+    </p>
+    <p>Copy and paste this URL into your calendar app to subscribe:</p>
+    <p>
+      <code>{{ url_for('calendar.ical_feed', user_id=1, _external=True) }}</code>
+    </p>
+  </body>
+</html>
