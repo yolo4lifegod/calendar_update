@@ -2,3 +2,4 @@ Flask
 Flask-SQLAlchemy
 icalendar
 python-dotenv
+gunicorn
