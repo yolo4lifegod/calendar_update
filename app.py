@@ -35,7 +35,7 @@ def index():
 
 @calendar_bp.route('/feed/<int:user_id>.ics')
 def ical_feed(user_id):
-    user = User.query.get(user_id)
+    user = db.session.get(User, user_id)
     if not user:
         return "User not found", 404
 
