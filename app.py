@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 from models import User, Event
+import time
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -49,10 +50,12 @@ def ical_feed(user_id):
         cal_event.add('dtend', event.end_time)
         cal_event.add('dtstamp', datetime.now())
         cal_event['uid'] = f'{event.id}@yourdomain.com'
-        cal_event.add('priority', 5)
         cal.add_component(cal_event)
 
-    response = Response(cal.to_ical(), mimetype='text/calendar')
+    ical_content = cal.to_ical()
+
+    response = Response(ical_content)
+    response.headers['Content-Type'] = 'text/calendar'
     response.headers['Content-Disposition'] = f'attachment; filename={user.username}.ics'
     return response
 
@@ -73,5 +76,11 @@ if __name__ == '__main__':
         db.session.add(event1)
         db.session.add(event2)
         db.session.commit()
+
+        #time.sleep(3600)
+
+        #event3 = Event(title='Lang` Class', start_time=datetime(2024, 9, 1, 13, 0), end_time=datetime(2024, 9, 1, 14, 0), user_id=user.id)
+        #db.session.add(event3)
+        #db.session.commit()
 
     app.run(debug=True)
