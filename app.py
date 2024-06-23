@@ -32,7 +32,7 @@ calendar_bp = Blueprint('calendar', __name__)
 def index():
     return render_template('index.html')
 
-@calendar_bp.route('/feed/<int:user_id>')
+@calendar_bp.route('/feed/<int:user_id>.ics')
 def ical_feed(user_id):
     user = User.query.get(user_id)
     if not user:
