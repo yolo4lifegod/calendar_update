@@ -56,7 +56,7 @@ def ical_feed(user_id):
 
     response = Response(ical_content)
     response.headers['Content-Type'] = 'text/calendar'
-    response.headers['Content-Disposition'] = f'attachment; filename={user.username}.ics'
+    response.headers['Content-Disposition'] = f'inline; filename={user.username}.ics'
     return response
 
 if __name__ == '__main__':
