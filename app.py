@@ -39,6 +39,9 @@ def ical_feed(user_id):
         return "User not found", 404
 
     cal = Calendar()
+    cal.add('prodid', '-//Your Organization//Your Calendar Product//EN')
+    cal.add('version', '2.0')
+    
     for event in user.events:
         cal_event = ICalEvent()
         cal_event.add('summary', event.title)
